@@ -1,5 +1,5 @@
 import React from "react";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { AiFillIeCircle, AiFillAndroid, AiFillWindows } from "react-icons/ai";
 
 const Services = () => {
@@ -28,12 +28,12 @@ const Services = () => {
       <h2>Services</h2>
       <section>
         <motion.div
-          className="servicesBox1"
+          className=""
           whileInView={animation.whileInView}
           initial={animation.one}
         >
-          <h3>1+</h3>
-          <p>Years Experience</p>
+          <h3>2.5+</h3>
+          <span>Years Experience</span>
         </motion.div>
         <motion.div
           className="servicesBox2"

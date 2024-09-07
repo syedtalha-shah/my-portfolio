@@ -21,7 +21,7 @@
         text-transform: uppercase;
         margin: 2rem;
       }
-      > input,
+      > input, textarea,
       > button {
         padding: 0.8rem;
         width: 40%;
@@ -29,6 +29,7 @@
         font: 400 0.9rem $text1;
         margin: 1rem;
         border: none;
+        border-radius: 0.5rem;
       }
 
       > button {

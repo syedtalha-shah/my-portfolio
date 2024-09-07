@@ -5,13 +5,14 @@ import {
   AiFillLinkedin,
   AiOutlineArrowUp,
 } from "react-icons/ai";
+import me from "../assets/logo.png";
 
 const Footer = () => {
   return (
     <footer>
       <div>
         <img
-          src="logo.png"
+          src={me}
           alt="Founder"
         />
 
