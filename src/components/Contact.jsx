@@ -15,7 +15,6 @@ const Contact = () => {
   const handleChange = (event) => {
     event.preventDefault();
     const { name, value } = event.target;
-    // console.log(name, value);
     setFormData((prevName) => {
       return {
         ...prevName,
@@ -34,8 +33,9 @@ const Contact = () => {
     try {
       await addDoc(collection(db, "contact"), {
         formData,
+      }).then(() => {
+        toast.success("Message Sent Success");
       });
-      toast.success("Message Sent Success");
     } catch (error) {
       toast.error("Error");
       console.log(error);
@@ -88,10 +88,10 @@ const Contact = () => {
             value={formData.email}
             onChange={handleChange}
           />
-          <input
-            type="text"
+          <textarea
             placeholder="Your Message"
             name="message"
+            rows={5}
             value={formData.message}
             required
             onChange={handleChange}

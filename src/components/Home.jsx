@@ -42,7 +42,7 @@ const Home = ({ ratio }) => {
           </motion.h1>
           <TypeWriter
             options={{
-              strings: ["A Developers", "A Designer", "A Creator"],
+              strings: ["An Engineer","A Developer", "A Designer", "A Creator"],
               autoStart: true,
               loop: true,
               wrapperClassName: "typewriterpara",

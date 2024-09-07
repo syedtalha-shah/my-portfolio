@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Testimonial = () => {
   const TestimonialCard = ({ name, feedback }) => (
     <article>
@@ -19,18 +18,19 @@ const Testimonial = () => {
 
       <section>
         <TestimonialCard
-          name={"Talha"}
-          feedback={"I will be a Full Stack Developer."}
+          name={"Syed Abdal"}
+          feedback={`Talha has been an exceptional Full Stack Developer.
+            He is a reliable team player, 
+            I highly recommend him.`}
+        />
+        <TestimonialCard
+          name={"Hamza Sohail"}
+          feedback={`His expertise and problem-solving skills have greatly benefited our team. He's a valuable asset, and I highly recommend him.`}
         />
         <TestimonialCard
           name={"Rubab"}
-          feedback={"I will be a Rich Girl Onyday."}
+          feedback={`His commitment to excellence and teamwork is remarkable. He’s a key contributor to our success."`}
         />
-        <TestimonialCard
-          name={"Abdal"}
-          feedback={"I will be a Full Stack Developer."}
-        />
-        
       </section>
     </div>
   );
