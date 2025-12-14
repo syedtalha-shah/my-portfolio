@@ -1,98 +1,171 @@
-import React from "react";
-import { animate, motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import TypeWriter from "typewriter-effect";
 import { BsArrowUpRight, BsChevronDown } from "react-icons/bs";
-import me from "../assets/logo.png";
-import { useRef } from "react";
+import Terminal from "./Terminal";
 
 const Home = ({ ratio }) => {
   const clientCount = useRef(null);
   const projectCount = useRef(null);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true });
 
   const animationClientCount = () => {
-    animate(0, 100, {
-      duration: 1,
-      onUpdate: (val) => (clientCount.current.textContent = val.toFixed()),
-    });
+    let count = 0;
+    const target = 100;
+    const duration = 1500;
+    const increment = target / (duration / 16);
+    
+    const timer = setInterval(() => {
+      count += increment;
+      if (count >= target) {
+        count = target;
+        clearInterval(timer);
+      }
+      if (clientCount.current) {
+        clientCount.current.textContent = Math.floor(count);
+      }
+    }, 16);
   };
+
   const animationProjectCount = () => {
-    animate(0, 500, {
-      duration: 1,
-      onUpdate: (val) => (projectCount.current.textContent = val.toFixed()),
-    });
+    let count = 0;
+    const target = 500;
+    const duration = 1500;
+    const increment = target / (duration / 16);
+    
+    const timer = setInterval(() => {
+      count += increment;
+      if (count >= target) {
+        count = target;
+        clearInterval(timer);
+      }
+      if (projectCount.current) {
+        projectCount.current.textContent = Math.floor(count);
+      }
+    }, 16);
   };
-  const animation = {
-    h1: {
-      initial: {
-        x: "-100%",
-        opacity: 0,
-      },
-      whileInView: {
-        x: 0,
-        opacity: 1,
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.4, 0, 0.2, 1],
+      },
+    },
+  };
+
+  const statsVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <div id="home">
+    <div id="home" ref={sectionRef}>
       <section>
-        <div>
-          <motion.h1 {...animation.h1}>
-            Hi, I Am <br /> Talha.
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
+          <motion.h1 variants={itemVariants}>
+            Hi, I Am <br />
+            <span>Talha.</span>
           </motion.h1>
-          <TypeWriter
-            options={{
-              strings: ["An Engineer","A Developer", "A Designer", "A Creator"],
-              autoStart: true,
-              loop: true,
-              wrapperClassName: "typewriterpara",
-              cursor: "",
-            }}
-          />
-          <div>
+
+          <motion.div variants={itemVariants}>
+            <TypeWriter
+              options={{
+                strings: [
+                  "Full Stack Developer",
+                  "React Specialist",
+                  "Node.js Expert",
+                  "Problem Solver",
+                ],
+                autoStart: true,
+                loop: true,
+                wrapperClassName: "typewriterpara",
+                cursor: "|",
+                cursorClassName: "typewriterpara",
+              }}
+            />
+          </motion.div>
+
+          <motion.div variants={itemVariants}>
             <a href="mailto:syedtalha497@gmail.com">Hire me</a>
             <a href="#work">
-              Projects <BsArrowUpRight />{" "}
+              Projects <BsArrowUpRight />
             </a>
-          </div>
+          </motion.div>
 
-          <article>
-            <p>
-              +
-              {ratio < 3 && (
-                <motion.span
-                  ref={clientCount}
-                  whileInView={animationClientCount}
-                ></motion.span>
-              )}
-            </p>
-            <span>Client Worldwide</span>
-          </article>
-
-          <aside>
-            <article>
+          <motion.aside variants={containerVariants}>
+            <motion.article
+              variants={statsVariants}
+              whileHover={{ scale: 1.05 }}
+              onViewportEnter={animationClientCount}
+            >
               <p>
-                +
-                {ratio < 3 && (
-                  <motion.span
-                    ref={projectCount}
-                    whileInView={animationProjectCount}
-                  ></motion.span>
-                )}
+                +<span ref={clientCount}>0</span>
+              </p>
+              <span>Clients Worldwide</span>
+            </motion.article>
+
+            <motion.article
+              variants={statsVariants}
+              whileHover={{ scale: 1.05 }}
+              onViewportEnter={animationProjectCount}
+            >
+              <p>
+                +<span ref={projectCount}>0</span>
               </p>
               <span>Projects Done</span>
-            </article>
-            <article data-special>
+            </motion.article>
+
+            <motion.article
+              data-special
+              variants={statsVariants}
+              whileHover={{ scale: 1.05 }}
+            >
               <p>Contact</p>
               <span>syedtalha497@gmail.com</span>
-            </article>
-          </aside>
-        </div>
+            </motion.article>
+          </motion.aside>
+        </motion.div>
       </section>
+
       <section>
-        <img src={me} alt="Syed Talha Jan" />
+        <Terminal />
       </section>
-      <BsChevronDown />
+
+      <motion.a
+        href="#work"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5 }}
+      >
+        <BsChevronDown />
+      </motion.a>
     </div>
   );
 };

@@ -1,0 +1,148 @@
+.terminal {
+  width: 100%;
+  max-width: 550px;
+  background: $color-bg-card;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  overflow: hidden;
+  box-shadow: $shadow-card;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: rgba($color-accent, 0.3);
+    box-shadow: $shadow-hover;
+  }
+
+  &__header {
+    background: linear-gradient(180deg, #2a2a3a 0%, #1a1a24 100%);
+    padding: 0.8rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+    &--red {
+      background: #ff5f56;
+      box-shadow: 0 0 8px rgba(255, 95, 86, 0.4);
+    }
+
+    &--yellow {
+      background: #ffbd2e;
+      box-shadow: 0 0 8px rgba(255, 189, 46, 0.4);
+    }
+
+    &--green {
+      background: #27c93f;
+      box-shadow: 0 0 8px rgba(39, 201, 63, 0.4);
+    }
+  }
+
+  &__title {
+    flex: 1;
+    text-align: center;
+    font: 400 0.8rem $font-code;
+    color: $color-text-muted;
+    margin-right: 36px;
+  }
+
+  &__body {
+    padding: 1.5rem;
+    min-height: 280px;
+    font-family: $font-code;
+    font-size: 0.9rem;
+    line-height: 1.8;
+  }
+
+  &__line {
+    margin-bottom: 0.3rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__prompt {
+    color: $color-accent;
+    margin-right: 0.5rem;
+
+    &::before {
+      content: "❯";
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__command {
+    color: $color-text-primary;
+  }
+
+  &__output {
+    color: $color-text-secondary;
+    padding-left: 1.5rem;
+    margin: 0.3rem 0;
+  }
+
+  &__comment {
+    color: $color-text-muted;
+    font-style: italic;
+
+    &::before {
+      content: "// ";
+      color: $color-text-muted;
+    }
+  }
+
+  &__keyword {
+    color: #c792ea;
+  }
+
+  &__string {
+    color: #c3e88d;
+  }
+
+  &__function {
+    color: #82aaff;
+  }
+
+  &__variable {
+    color: #f78c6c;
+  }
+
+  &__bracket {
+    color: $color-text-muted;
+  }
+
+  &__cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2em;
+    background: $color-accent;
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    box-shadow: 0 0 10px $color-accent-glow;
+  }
+
+  &__typing {
+    display: inline;
+    border-right: 2px solid $color-accent;
+    animation: blink 1s step-end infinite;
+  }
+}
+
+// Code block styling
+.code-block {
+  background: rgba($color-bg-primary, 0.5);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-left: 3px solid $color-accent;
+
+  &__line {
+    display: block;
+    padding-left: 0.5rem;
+  }
+}
+

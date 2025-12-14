@@ -1,39 +1,52 @@
 {
-    "projects": [
-      {
-        "date": "07/10/2022",
-        "title": "TECHY STAR",
-        "description": "This is the sample description about the project details. The more details the more details and evenually more details because I don't have anything to write",
-        "url": "https://reactone-nine.vercel.app",
-        "imgSrc": "https://cdn.pixabay.com/photo/2018/06/07/16/49/virtual-3460451_960_720.jpg"
-      },
-      {
-        "date": "11/10/2022",
-        "title": "VIDEO HUB",
-        "description": "This is the sample description about the project details. The more details the more details and evenually more details because I don't have anything to write",
-        "url": "https://react-video-app-eight.vercel.app",
-        "imgSrc": "https://cdn.pixabay.com/photo/2016/11/21/12/51/mobile-phone-1845233__340.jpg"
-      },
-      {
-        "date": "15/10/2022",
-        "title": "XCrypto",
-        "description": "This is the sample description about the project details. The more details the more details and evenually more details because I don't have anything to write",
-        "url": "https://react-crypto-app-pi.vercel.app",
-        "imgSrc": "https://cdn.pixabay.com/photo/2017/12/12/12/44/bitcoin-3014614_960_720.jpg"
-      },
-      {
-        "date": "17/10/2022",
-        "title": "REACT CART",
-        "description": "This is the sample description about the project details. The more details the more details and evenually more details because I don't have anything to write",
-        "url": "https://react-cart-eosin.vercel.app",
-        "imgSrc": "https://cdn.pixabay.com/photo/2019/12/14/08/36/shopping-4694470_960_720.jpg"
-      },
-      {
-        "date": "20/10/2022",
-        "title": "PORTFOLIO",
-        "description": "This is the sample description about the project details. The more details the more details and evenually more details because I don't have anything to write",
-        "url": "/",
-        "imgSrc": "https://cdn.pixabay.com/photo/2020/03/19/21/25/cactus-4948833_960_720.jpg"
-      }
-    ]
-  }
+  "projects": [
+    {
+      "title": "Trumemo",
+      "description": "A robust healthcare management system for agencies supporting individuals with developmental disabilities. Features comprehensive patient data management, progress tracking, incident reports, behavior monitoring, and customizable care plan templates.",
+      "url": "https://trumemo.com",
+      "github": "https://github.com/syedtalha-shah",
+      "imgSrc": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      "tech": ["React", "Node.js", "MongoDB", "Redux"]
+    },
+    {
+      "title": "Intralign",
+      "description": "A business development roadmap tool for strategic planning and operational alignment. Features an interactive timeline for visualizing and tracking strategic initiatives with robust collaboration features.",
+      "url": "https://intralign.ai",
+      "github": "https://github.com/syedtalha-shah",
+      "imgSrc": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+      "tech": ["React", "TypeScript", "Tailwind CSS"]
+    },
+    {
+      "title": "Electra",
+      "description": "An AI-powered multi-agent business assistant platform. Features dynamic multi-step forms, advanced multi-field filtering, interactive data tables, and real-time WebSocket communication for live chat and agent interactions.",
+      "url": "https://electra.ai",
+      "github": "https://github.com/syedtalha-shah",
+      "imgSrc": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+      "tech": ["React", "Tailwind CSS", "Material-UI", "WebSocket"]
+    },
+    {
+      "title": "Voyage Vite",
+      "description": "A web admin panel for property and vehicle rental operations. Features Google Maps integration for interactive search, robust multi-criteria filtering, user management with secure authentication, and real-time data synchronization.",
+      "url": "https://voyagevite.com/",
+      "github": "https://github.com/syedtalha-shah",
+      "imgSrc": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80",
+      "tech": ["React", "Vite", "Google Maps API", "Node.js"]
+    },
+    {
+      "title": "Portfolio Website",
+      "description": "A modern, animated portfolio website showcasing projects and skills. Features smooth animations, dark theme, and responsive design.",
+      "url": "/",
+      "github": "https://github.com/syedtalha-shah/my-portfolio",
+      "imgSrc": "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
+      "tech": ["React", "Framer Motion", "SCSS"]
+    },
+    {
+      "title": "Real-time Dashboard",
+      "description": "A data visualization dashboard with real-time updates, interactive charts, and customizable widgets. Designed for analytics and monitoring.",
+      "url": "https://voyagevite.com/",
+      "github": "https://github.com/syedtalha-shah",
+      "imgSrc": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      "tech": ["Vue.js", "D3.js", "WebSocket", "Express"]
+    }
+  ]
+}

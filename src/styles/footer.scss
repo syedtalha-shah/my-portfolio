@@ -1,57 +1,134 @@
 footer {
-    min-height: 100px;
-    background-color: $color6;
-    color: $color4;
-    padding: 6rem 0;
-    padding-left: $p;
-    display: grid;
-    grid-template-columns: 10fr 3fr 1fr;
-    align-items: center;
-    justify-items: center;
+  min-height: 100px;
+  background: $color-bg-primary;
+  border-top: 1px solid $color-border;
+  color: $color-text-primary;
+  padding: 4rem $p;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+
+  > div {
     text-align: center;
-    > div {
-      width: 100%;
-      border-left: 2px solid $color4;
-      border-right: 2px solid $color4;
-      > img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: contain;
-      }
-  
-      > h2 {
-        margin: 1rem;
-      }
-      > p {
-        font: 400 1.2rem $text2;
+    padding: 2rem;
+    border-left: 1px solid $color-border;
+    border-right: 1px solid $color-border;
+
+    > img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: contain;
+      border: 2px solid $color-border;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: $color-accent;
+        box-shadow: 0 0 20px $color-accent-glow;
       }
     }
-  
-    > aside > article {
-      margin-top: 1rem;
+
+    > h2 {
+      font: 700 1.5rem $font-code;
+      color: $color-accent;
+      margin: 1rem 0 0.5rem;
+    }
+
+    > p {
+      font: 400 1rem $font-body;
+      color: $color-text-secondary;
+      max-width: 300px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+
+  > aside {
+    text-align: center;
+
+    > h2 {
+      font: 600 1rem $font-code;
+      color: $color-text-secondary;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+    }
+
+    > article {
       display: flex;
       flex-direction: column;
       align-items: center;
-      svg {
-        font-size: 2rem;
-        color: $color4;
+      gap: 1rem;
+
+      a {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 1px solid $color-border;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+
         &:hover {
-          color: $color3;
+          border-color: $color-accent;
+          background: $color-accent-dim;
+
+          svg {
+            color: $color-accent;
+          }
+        }
+
+        svg {
+          font-size: 1.5rem;
+          color: $color-text-secondary;
+          transition: all 0.3s ease;
         }
       }
     }
-  
-    > a {
-      width: 50px;
-      height: 50px;
-      background-color: $color4;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
+  }
+
+  > a {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: 1px solid $color-accent;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    justify-self: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $color-accent;
+
       svg {
-        font-size: 2rem;
-        color: $color3;
+        color: $color-bg-primary;
       }
     }
+
+    svg {
+      font-size: 1.5rem;
+      color: $color-accent;
+      transition: all 0.3s ease;
+    }
   }
+}
+
+// Footer bottom bar (optional)
+.footer-bottom {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid $color-border;
+  margin-top: 2rem;
+
+  p {
+    font: 400 0.9rem $font-code;
+    color: $color-text-muted;
+
+    span {
+      color: $color-accent;
+    }
+  }
+}
