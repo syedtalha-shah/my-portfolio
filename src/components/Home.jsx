@@ -147,7 +147,9 @@ const Home = ({ ratio }) => {
               variants={statsVariants}
               whileHover={{ scale: 1.05 }}
             >
-              <p>Contact</p>
+              <p>
+                Contact
+              </p>
               <span>syedtalha497@gmail.com</span>
             </motion.article>
           </motion.aside>
