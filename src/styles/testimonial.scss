@@ -1,55 +1,97 @@
 #testimonial {
-    width: 100%;
-    padding: $p;
-    background-color: $color4;
-    color: $color5;
-  
-    > h2 {
-      font: 700 2.5rem $text2;
-      text-align: center;
-      margin-bottom: 3rem;
+  width: 100%;
+  padding: 6rem $p;
+  background: $color-bg-primary;
+  color: $color-text-primary;
+
+  > h2 {
+    font: 700 2.5rem $font-code;
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: $color-accent;
+      box-shadow: 0 0 10px $color-accent-glow;
     }
-  
-    > section {
+  }
+
+  > section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    > article {
+      background: $color-bg-card;
+      border: 1px solid $color-border;
+      border-radius: 12px;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      width: 80%;
-      margin: auto;
-      height: 40rem;
-      padding: 8rem;
-      background-color: $color1;
-      gap: 20px;
-  
-      > article {
-        height: 100%;
-        width: 30%;
-        background-color: $color4;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-        position: relative;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem 2rem;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover {
+        border-color: $color-accent;
+        box-shadow: $shadow-glow;
+        transform: translateY(-5px);
+
         img {
-          top: 0%;
-          position: absolute;
-          width: 100px;
-          height: 100px;
-          object-fit: contain;
-          border-radius: 50%;
-          transform: translateY(-50%);
+          border-color: $color-accent;
+          box-shadow: 0 0 20px $color-accent-glow;
         }
-  
-        p {
-          letter-spacing: 1.5px;
-          margin: 20px 0;
-          font-size: 0.9rem;
-          font-weight: 500;
-          line-height: 160%;
-          text-align: center;
-          overflow: hidden;
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        border: 3px solid $color-border;
+        background: $color-bg-primary;
+        transition: all 0.3s ease;
+      }
+
+      h4 {
+        font: 600 1.1rem $font-code;
+        color: $color-accent;
+        margin-top: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font: 400 0.95rem $font-body;
+        letter-spacing: 0.5px;
+        line-height: 170%;
+        text-align: center;
+        color: $color-text-secondary;
+        position: relative;
+
+        &::before {
+          content: '"';
+          font-size: 3rem;
+          color: $color-accent;
+          opacity: 0.3;
+          position: absolute;
+          top: -20px;
+          left: -10px;
+          font-family: Georgia, serif;
         }
       }
     }
   }
+}

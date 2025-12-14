@@ -1,101 +1,215 @@
 #work {
   width: 100%;
-  height: 100vh;
-  padding: 8rem $p;
-  
+  min-height: 100vh;
+  padding: 6rem $p;
+  background: $color-bg-secondary;
+  position: relative;
 
   > h2 {
-    font: 700 2.5rem $text2;
+    font: 700 2.5rem $font-code;
     width: fit-content;
-    border-bottom: 1px solid $color6_1;
-    padding: 0.5rem;
-    margin: auto;
-    &:hover{
-        color: $color3;
-        cursor: pointer;
-        transition: 0.4s;
+    color: $color-text-primary;
+    padding: 0.5rem 0;
+    margin: 0 auto 4rem;
+    text-align: center;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: $color-accent;
+      box-shadow: 0 0 10px $color-accent-glow;
     }
   }
 
   > section {
-    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+}
+
+.project-card {
+  background: $color-bg-card;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+
+  &:hover {
+    transform: translateY(-10px);
+    border-color: $color-accent;
+    box-shadow: $shadow-hover;
+
+    .project-card__image img {
+      transform: scale(1.05);
+    }
+
+    .project-card__overlay {
+      opacity: 1;
+    }
+  }
+
+  &__image {
     width: 100%;
-    height: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($color-bg-primary, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $color5;
-    border-radius: 4px;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
 
-    > article {
-      width: 70%;
-      height: 25vmax;
-    }
-    .workItem {
-      overflow-y: auto;
-      height: 25vmax;
-      width: 95%;
-      margin: auto;
-      background-color: $color4;
-      display: flex;
-      padding: 2rem;
-      box-shadow: 0 0 25px 5px $color1;
-      border-radius: 6px;
+  &__link {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $color-accent;
+    color: $color-bg-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 
-      > img {
-        width: 40%;
-        border-radius: 20px;
-        object-fit: cover;
-      }
-
-      > aside {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        width: 70%;
-        align-items: center;
-        border-radius: 6px;
-
-        > p {
-          letter-spacing: 1px;
-          line-height: 150%;
-          margin: 0.7rem;
-        }
-        > a {
-          color: $color4;
-          background-color: $color3;
-          padding: 0.7rem 2rem;
-          margin: 2rem;
-          border-radius: 3px;
-          font-weight: 500;
-          transition: all 0.5s;
-          text-decoration: none;
-          &:hover {
-            background-color: $color3_1;
-          }
-        }
-      }
+    &:hover {
+      transform: scale(1.1);
+      box-shadow: $shadow-glow;
     }
 
-    // > h2 {
-    //     font: 700 2.5rem $text2;
-    //     width: fit-content;
-    //     color: $color6_1;
-    //     padding: 0.5rem;
-    //     margin:  auto;
+    &--github {
+      background: transparent;
+      border: 2px solid $color-accent;
+      color: $color-accent;
 
-    // }
-    // > div {
-    //     width: fit-content;
-    //     height: fit-content;
-    //     display: flex;
-    //     flex-direction: column;
-    //     align-items: center;
-    //     justify-content: center;
-    //     background-color: $color5;
-    //     border-radius: 4px;
-    //     padding: 0.5rem;
-    //     margin:  auto;
-    // }
+      &:hover {
+        background: $color-accent;
+        color: $color-bg-primary;
+      }
+    }
+  }
+
+  &__content {
+    padding: 1.5rem;
+  }
+
+  &__title {
+    font: 600 1.3rem $font-code;
+    color: $color-text-primary;
+    margin-bottom: 0.8rem;
+  }
+
+  &__description {
+    font: 400 0.95rem $font-body;
+    color: $color-text-secondary;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  &__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  &__tag {
+    font: 400 0.75rem $font-code;
+    color: $color-accent;
+    background: $color-accent-dim;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    border: 1px solid rgba($color-accent, 0.2);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba($color-accent, 0.2);
+      border-color: $color-accent;
+    }
+  }
+}
+
+// Legacy carousel styles fallback
+.workItem {
+  overflow-y: auto;
+  height: 25vmax;
+  width: 95%;
+  margin: auto;
+  background: $color-bg-card;
+  display: flex;
+  padding: 2rem;
+  box-shadow: $shadow-card;
+  border-radius: 12px;
+  border: 1px solid $color-border;
+
+  > img {
+    width: 40%;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  > aside {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    padding: 1rem;
+
+    > h3 {
+      font: 600 1.5rem $font-code;
+      color: $color-text-primary;
+    }
+
+    > p {
+      letter-spacing: 1px;
+      line-height: 160%;
+      margin: 1rem 0;
+      color: $color-text-secondary;
+    }
+
+    > a {
+      color: $color-bg-primary;
+      background: $color-accent;
+      padding: 0.8rem 2rem;
+      border-radius: 4px;
+      font: 500 0.9rem $font-code;
+      transition: all 0.3s ease;
+      text-decoration: none;
+
+      &:hover {
+        background: transparent;
+        color: $color-accent;
+        box-shadow: inset 0 0 0 2px $color-accent;
+      }
+    }
   }
 }

@@ -1,191 +1,289 @@
-@media screen and (max-width: 1367px) {
+// Large screens (1400px and below)
+@media screen and (max-width: 1400px) {
   nav {
     padding: 0 $p_md;
   }
 
   #home {
-    height: 100vh;
     > section {
       &:first-of-type {
         padding-left: $p_md;
-        > div aside {
-          width: 85%;
-        }
+      }
+      &:last-of-type {
+        padding-right: $p_md;
       }
     }
   }
 
   #work {
-    padding: 8rem $p_md;
-    height: 110vh;
-    > section {
-      > article {
-        height: 20rem;
-        width: 90%;
-      }
-      .workItem {
-        padding: 2rem;
-        height: 20rem;
-        > aside {
-          > p {
-            margin: 1rem;
-          }
-          > a {
-            margin: 1rem;
-          }
-        }
-      }
-    }
+    padding: 6rem $p_md;
   }
 
   #services {
-    padding: $p_md;
-    > section {
-      height: 90%;
-    }
+    padding: 6rem $p_md;
   }
+
   #testimonial {
-    padding: $p_md;
-    > section {
-      width: 100%;
-    }
+    padding: 6rem $p_md;
   }
 
   #contact > section > form {
-    > input,
-    > button {
-      font: 400 0.8rem $text1;
-      width: 50%;
-    }
+    max-width: 450px;
   }
 
   footer {
-    padding-left: $p_md;
+    padding: 4rem $p_md;
   }
 }
 
+// Medium screens (1100px and below)
 @media screen and (max-width: 1100px) {
   nav {
     padding: 0 $p_base;
   }
 
   #home {
-    height: 110vh;
     > section {
       &:first-of-type {
         padding-left: $p_base;
+
         > div {
           > h1 {
-            font: 900 3rem $text1;
+            font-size: 3rem;
           }
 
           aside {
-            width: 100%;
+            gap: 2rem;
+            flex-wrap: wrap;
           }
         }
+      }
+      &:last-of-type {
+        padding-right: $p_base;
       }
     }
   }
 
   #work {
-    padding: 8rem $p_base;
+    padding: 6rem $p_base;
+
+    > section {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
   }
 
   #services {
-    padding: $p_base_inverse;
-    text-align: center;
+    padding: 6rem $p_base;
+
+    > section {
+      grid-template-columns: repeat(2, 1fr);
+
+      .servicesBox1 {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+      }
+
+      .servicesBox4 {
+        grid-column: 1 / 3;
+      }
+    }
+  }
+
+  #testimonial {
+    padding: 6rem $p_base;
+  }
+
+  footer {
+    padding: 4rem $p_base;
+    grid-template-columns: 1fr 1fr;
+
+    > div {
+      grid-column: 1 / -1;
+      border: none;
+      border-bottom: 1px solid $color-border;
+      padding-bottom: 2rem;
+    }
   }
 }
 
+// Tablet screens (900px and below)
 @media screen and (max-width: 900px) {
   nav {
     padding: 0 $p_sm;
+
     > h2 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
+
     > div {
       gap: 1rem;
+
+      a {
+        font-size: 0.8rem;
+      }
     }
   }
 
   #home {
+    flex-direction: column;
+    padding-top: 2rem;
+
     > section {
       &:first-of-type {
-        padding-left: $p_sm;
+        padding: 0 $p_sm;
+        order: 2;
+
         > div {
+          padding-top: 2rem;
+          text-align: center;
+          align-items: center;
+
+          > h1 {
+            font-size: 2.5rem;
+          }
+
           > div {
-            gap: 2rem;
-            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
           }
+
           aside {
-            flex-direction: column;
+            justify-content: center;
           }
+        }
+      }
+
+      &:last-of-type {
+        order: 1;
+        padding: 2rem $p_sm;
+      }
+    }
+
+    > svg {
+      display: none;
+    }
+  }
+
+  #experience {
+    padding: 4rem $p_sm;
+
+    .timelineBox::after {
+      left: 20px;
+    }
+
+    .timelineItem {
+      width: 100%;
+      padding-left: 50px;
+      padding-right: $p_sm;
+
+      &::after {
+        left: 8px;
+        right: auto;
+      }
+    }
+
+    .rightTimeline {
+      left: 0;
+
+      &::after {
+        left: 8px;
+      }
+    }
+
+    .leftTimeline,
+    .rightTimeline {
+      text-align: left;
+    }
+  }
+
+  #services {
+    padding: 4rem $p_sm;
+
+    > section {
+      gap: 1rem;
+
+      > * {
+        min-height: 150px;
+        padding: 1.5rem;
+
+        > svg {
+          font-size: 2.5rem;
+        }
+
+        > span {
+          font-size: 0.85rem;
+        }
+      }
+
+      .servicesBox1 > h3 {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  #testimonial {
+    padding: 4rem $p_sm;
+
+    > section {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+
+      > article {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  #contact {
+    grid-template-columns: 1fr;
+
+    > aside {
+      display: none;
+    }
+
+    > section {
+      min-height: 80vh;
+
+      > form {
+        padding: 2rem;
+
+        > h2 {
+          font-size: 2rem;
         }
       }
     }
   }
 
-  #work {
-    padding: 8rem $p_zero;
-    > section {
-      > article {
-        height: 25rem;
-      }
-      .workItem {
-        height: 25rem;
-      }
-    }
-  }
-
-  #services {
-    padding: $p_sm_inverse;
-    height: 90vh;
-  }
-  #testimonial {
-    padding: $p_zero;
-    > h2 {
-      padding: 3rem;
-      margin-bottom: 0%;
-    }
-    > section {
-      padding: 3rem;
-      height: 45rem;
-      justify-content: space-evenly;
-
-      > article {
-        width: 40%;
-        height: 50%;
-      }
-    }
-  }
-
-  #contact > section > form {
-    > h2 {
-      font: 100 2.3rem $text2;
-    }
-    > input,
-    > button {
-      width: 65%;
-    }
-  }
-
   footer {
-    padding-left: $p_zero;
+    padding: 3rem $p_sm;
     grid-template-columns: 1fr;
+    text-align: center;
+
     > div {
-      width: 100%;
       border: none;
-      p {
-        width: 50%;
-        margin: 2rem auto;
+      border-bottom: 1px solid $color-border;
+
+      > p {
+        width: 80%;
+        margin: 1rem auto;
       }
     }
+
+    > aside {
+      > article {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
     > a {
-      margin: 1rem;
+      margin: 1rem auto 0;
     }
   }
 }
 
+// Mobile navigation breakpoint
 @media screen and (max-width: 786px) {
   nav {
     > div,
@@ -193,153 +291,175 @@
       display: none;
     }
   }
+
   .navBtn {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
+// Small mobile screens (600px and below)
 @media screen and (max-width: 600px) {
   #home {
-    height: unset;
-    flex-direction: column-reverse;
-
     > section {
       &:first-of-type {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-
         > div {
-          border: none;
-          padding-top: 3rem;
           > h1 {
-            font: 900 2.5rem $text1;
-          }
-          > div {
-            flex-direction: column;
-          }
-          aside {
-            align-items: center;
+            font-size: 2rem;
           }
 
-          article[data-special] {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            span {
-              display: block;
-              width: 70%;
-              word-wrap: break-word;
+          .typewriterpara {
+            font-size: 1rem;
+          }
+
+          > div {
+            gap: 1rem;
+
+            > a:first-of-type {
+              padding: 0.8rem 1.5rem;
+              font-size: 0.9rem;
             }
           }
 
           article {
             width: 100%;
-            text-align: center;
-            &::after {
-              top: 0;
-              left: 0%;
+            padding: 1rem;
+
+            > p {
+              font-size: 1.5rem;
+            }
+
+            > span {
+              font-size: 0.8rem;
             }
           }
         }
       }
-
-      &:last-of-type {
-        border: none;
-      }
     }
+  }
 
-    > svg {
-      font-size: 2rem;
-      bottom: 12%;
+  .terminal {
+    max-width: 100%;
+
+    &__body {
+      padding: 1rem;
+      min-height: 220px;
+      font-size: 0.8rem;
     }
   }
 
   #work {
+    padding: 4rem $p_sm;
+
+    > h2 {
+      font-size: 2rem;
+    }
+
     > section {
-      > article {
-        width: 100%;
-        height: 30vmax;
+      grid-template-columns: 1fr;
+    }
+
+    .project-card {
+      &__image {
+        height: 180px;
       }
-      .workItem {
-        height: 30vmax;
-        box-shadow: 0 0 5px $color1;
-        > aside {
-          padding: 1rem;
 
-          > h3 {
-            margin: 1rem;
-          }
+      &__content {
+        padding: 1.2rem;
+      }
 
-          > p {
-            letter-spacing: 0;
-            line-height: unset;
-            margin: 0%;
-            font-size: 0.75rem;
-          }
+      &__title {
+        font-size: 1.1rem;
+      }
 
-          > a {
-            padding: 0.4rem 0.7rem;
-            font-size: 0.7rem;
-            margin: 1rem;
-          }
-        }
+      &__description {
+        font-size: 0.9rem;
       }
     }
   }
 
   #experience {
-    .timelineBox::after {
-      left: 31px;
-    }
+    .timelineItem > div {
+      padding: 1rem 1.2rem;
 
-    .timelineItem {
-      width: 100%;
-      padding-left: 5rem;
-      padding-right: 2rem;
-    }
-
-    .rightTimeline {
-      left: 0%;
-    }
-    .leftTimeline,
-    .rightTimeline {
-      &::after {
-        left: 15px;
+      > h2 {
+        font-size: 1rem;
       }
     }
   }
 
   #services {
     > section {
-      margin: 3rem 0;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      .servicesBox1 {
-        grid-column: 1/3;
-        grid-row: unset;
-      }
+      grid-template-columns: 1fr;
 
+      .servicesBox1,
       .servicesBox4 {
-        grid-column: 1/3;
+        grid-column: 1;
+      }
+
+      .servicesBox1 {
+        grid-row: 1;
       }
     }
   }
-  #testimonial > section {
-    height: unset;
-    gap: 3rem;
-    > article {
+
+  #contact > section > form {
+    > h2 {
+      font-size: 1.8rem;
+    }
+
+    > input,
+    > textarea,
+    > button {
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    > button {
       width: 100%;
-      height: 100vw;
     }
   }
 
-  #contact {
-    grid-template-columns: 1fr;
-    > aside {
-      display: none;
+  footer {
+    padding: 2rem $p_sm;
+
+    > div {
+      > img {
+        width: 80px;
+        height: 80px;
+      }
+
+      > h2 {
+        font-size: 1.2rem;
+      }
+
+      > p {
+        font-size: 0.9rem;
+        width: 100%;
+      }
     }
+  }
+}
+
+// Extra small screens (400px and below)
+@media screen and (max-width: 400px) {
+  #home > section:first-of-type > div {
+    > h1 {
+      font-size: 1.7rem;
+    }
+
+    aside {
+      gap: 1rem;
+    }
+
+    article[data-special] > span {
+      font-size: 0.75rem;
+    }
+  }
+
+  .terminal__body {
+    font-size: 0.7rem;
+    padding: 0.8rem;
   }
 }
