@@ -286,7 +286,16 @@
 // Mobile navigation breakpoint
 @media screen and (max-width: 786px) {
   nav {
-    > div,
+    padding-right: 4rem; // Add space for hamburger menu
+    
+    > div:first-of-type {
+      display: none; // Hide navigation links
+    }
+
+    > div:last-of-type {
+      display: none !important; // Hide CV and Email buttons
+    }
+
     > a {
       display: none;
     }
@@ -296,6 +305,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    top: 1rem;
+    right: 1rem;
   }
 }
 

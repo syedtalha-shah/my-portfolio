@@ -84,9 +84,22 @@ export const HeaderPhone = ({ menuOpen, setMenuOpen, activeSection }) => {
           Contact
         </a>
       </motion.div>
-      <motion.a variants={itemVariants} href="mailto:syedtalha497@gmail.com">
-        <button>Email</button>
-      </motion.a>
+      <motion.div variants={itemVariants}>
+        <motion.a 
+          variants={itemVariants} 
+          href="/SyedTalhaJanResume.pdf"
+          download="SyedTalhaJanResume.pdf"
+          onClick={() => setMenuOpen(false)}
+        >
+          <button>
+            <HiDownload />
+            CV
+          </button>
+        </motion.a>
+        <motion.a variants={itemVariants} href="mailto:syedtalha497@gmail.com" onClick={() => setMenuOpen(false)}>
+          <button>Email</button>
+        </motion.a>
+      </motion.div>
     </motion.div>
   );
 };
