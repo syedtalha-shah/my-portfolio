@@ -1,0 +1,31 @@
+.skills-chart {
+  width: 100%;
+  padding: 2rem;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  margin-top: 2rem;
+
+  h3 {
+    font: 600 1.5rem var(--font-code);
+    color: var(--color-text-primary);
+    text-align: center;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+  }
+
+  // Override recharts default styles
+  .recharts-polar-grid-line {
+    stroke: var(--color-border);
+  }
+
+  .recharts-polar-angle-axis-tick-value {
+    fill: var(--color-text-secondary);
+    font-family: var(--font-code);
+  }
+
+  .recharts-polar-radius-axis-tick-value {
+    fill: var(--color-text-muted);
+  }
+}
+

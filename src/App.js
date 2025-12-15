@@ -7,9 +7,11 @@ import Testimonial from "./components/Testimonial";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import FloatingSkillIcons from "./components/FloatingSkillIcons";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,7 +44,6 @@ function App() {
     
     const updateActiveSection = () => {
       const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
       const offset = 200; // Offset for better detection
 
       // Check if we're at the very top
@@ -112,84 +113,87 @@ function App() {
 
   if (isLoading) {
     return (
-      <motion.div
-        initial={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        style={{
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#0a0a0f",
-        }}
-      >
         <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.5, 1, 0.5],
-          }}
-          transition={{
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           style={{
-            fontSize: "3rem",
-            fontFamily: "'JetBrains Mono', monospace",
-            fontWeight: 700,
-            color: "#00f5d4",
-            textShadow: "0 0 30px rgba(0, 245, 212, 0.5)",
+            height: "100vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "var(--color-bg-primary)",
           }}
         >
-          STJ.
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{
+              fontSize: "3rem",
+              fontFamily: "var(--font-code)",
+              fontWeight: 700,
+              color: "var(--color-accent)",
+              textShadow: "0 0 30px var(--color-accent-glow)",
+            }}
+          >
+            STJ.
+          </motion.div>
         </motion.div>
-      </motion.div>
     );
   }
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-      >
-        <HeaderPhone menuOpen={menuOpen} setMenuOpen={setMenuOpen} activeSection={activeSection} />
-        <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} activeSection={activeSection} />
-        <Home />
-        <Work />
-        <Timeline />
-        <Services />
-        <Testimonial />
-        <Contact />
-        <Footer />
-        <WhatsAppButton />
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            duration: 4000,
-            style: {
-              background: "#1a1a24",
-              color: "#ffffff",
-              border: "1px solid #2a2a3a",
-              fontFamily: "'Space Grotesk', sans-serif",
-            },
-            success: {
-              iconTheme: {
-                primary: "#00f5d4",
-                secondary: "#0a0a0f",
+    <ThemeProvider>
+      <FloatingSkillIcons />
+      <AnimatePresence mode="wait">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <HeaderPhone menuOpen={menuOpen} setMenuOpen={setMenuOpen} activeSection={activeSection} />
+          <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} activeSection={activeSection} />
+          <Home />
+          <Work />
+          <Timeline />
+          <Services />
+          <Testimonial />
+          <Contact />
+          <Footer />
+          <WhatsAppButton />
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              duration: 4000,
+              style: {
+                background: "var(--color-bg-card)",
+                color: "var(--color-text-primary)",
+                border: "1px solid var(--color-border)",
+                fontFamily: "var(--font-body)",
               },
-            },
-            error: {
-              iconTheme: {
-                primary: "#ff5f56",
-                secondary: "#0a0a0f",
+              success: {
+                iconTheme: {
+                  primary: "var(--color-accent)",
+                  secondary: "var(--color-bg-primary)",
+                },
               },
-            },
-          }}
-        />
-      </motion.div>
-    </AnimatePresence>
+              error: {
+                iconTheme: {
+                  primary: "#ff5f56",
+                  secondary: "var(--color-bg-primary)",
+                },
+              },
+            }}
+          />
+        </motion.div>
+      </AnimatePresence>
+    </ThemeProvider>
   );
 }
 

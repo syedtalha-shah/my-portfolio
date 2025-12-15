@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { AiFillMobile } from "react-icons/ai";
 import { FaReact, FaNodeJs } from "react-icons/fa";
+import SkillsChart from "./SkillsChart";
 
 const Services = () => {
   const containerVariants = {
@@ -93,6 +94,16 @@ const Services = () => {
           </motion.div>
         ))}
       </motion.section>
+
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        style={{ marginTop: "4rem", maxWidth: "800px", margin: "4rem auto 0" }}
+      >
+        <SkillsChart />
+      </motion.div>
     </div>
   );
 };

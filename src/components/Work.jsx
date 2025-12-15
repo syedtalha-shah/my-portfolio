@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 import data from "../assets/data.json";
+import ParticleBackground from "./ParticleBackground";
 
 const Work = () => {
   const containerVariants = {
@@ -40,12 +41,14 @@ const Work = () => {
   };
 
   return (
-    <div id="work">
+    <div id="work" style={{ position: "relative" }}>
+      <ParticleBackground density="low" color="var(--color-accent)" section="work" />
       <motion.h2
         variants={titleVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
+        style={{ position: "relative", zIndex: 1 }}
       >
         PROJECTS
       </motion.h2>
@@ -55,6 +58,7 @@ const Work = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
+        style={{ position: "relative", zIndex: 1 }}
       >
         {data.projects.map((project, index) => (
           <ProjectCard key={project.title} project={project} variants={cardVariants} />
