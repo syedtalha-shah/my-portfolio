@@ -11,13 +11,13 @@ const Testimonial = () => {
     },
     {
       name: "Hamza Sohail",
-      role: "Tech Lead",
+      role: "Co-Founder (MetaKlouds)",
       feedback: `His expertise and problem-solving skills have greatly benefited our team. He approaches every challenge with creativity and dedication. A valuable asset!`,
       image: "/hamza.png",
     },
     {
       name: "Muhammad Kashif",
-      role: "CEO",
+      role: "Founder (MetaKlouds)",
       feedback: `His commitment to excellence and teamwork is remarkable. Talha is a key contributor to our success and someone you can always count on.`,
       image: "/kashif.png",
     },

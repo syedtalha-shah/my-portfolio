@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
+import ParticleBackground from "./ParticleBackground";
 
 const Contact = () => {
   const formRef = useRef();
@@ -67,8 +68,9 @@ const Contact = () => {
   };
 
   return (
-    <div id="contact">
-      <section>
+    <div id="contact" style={{ position: "relative" }}>
+      <ParticleBackground density="medium" color="var(--color-accent)" section="contact" />
+      <section style={{ position: "relative", zIndex: 1 }}>
         <motion.form
           ref={formRef}
           onSubmit={handleSubmit}
@@ -87,7 +89,7 @@ const Contact = () => {
             value={formData.name}
             onChange={handleChange}
             variants={itemVariants}
-            whileFocus={{ scale: 1.02, borderColor: "#00f5d4" }}
+            whileFocus={{ scale: 1.02, borderColor: "var(--color-accent)" }}
           />
 
           <motion.input
@@ -98,7 +100,7 @@ const Contact = () => {
             value={formData.email}
             onChange={handleChange}
             variants={itemVariants}
-            whileFocus={{ scale: 1.02, borderColor: "#00f5d4" }}
+            whileFocus={{ scale: 1.02, borderColor: "var(--color-accent)" }}
           />
 
           <motion.textarea
@@ -109,7 +111,7 @@ const Contact = () => {
             value={formData.message}
             onChange={handleChange}
             variants={itemVariants}
-            whileFocus={{ scale: 1.02, borderColor: "#00f5d4" }}
+            whileFocus={{ scale: 1.02, borderColor: "var(--color-accent)" }}
           />
 
           <motion.button
@@ -128,7 +130,7 @@ const Contact = () => {
         </motion.form>
       </section>
 
-      <aside>
+      <aside style={{ position: "relative", zIndex: 1 }}>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -138,7 +140,7 @@ const Contact = () => {
             width: "200px",
             height: "200px",
             borderRadius: "50%",
-            background: "linear-gradient(135deg, rgba(0, 245, 212, 0.2) 0%, rgba(0, 184, 169, 0.1) 100%)",
+            background: "linear-gradient(135deg, var(--color-accent-dim) 0%, rgba(0, 184, 169, 0.1) 100%)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -160,14 +162,14 @@ const Contact = () => {
               width: "100%",
               height: "100%",
               borderRadius: "50%",
-              border: "2px solid rgba(0, 245, 212, 0.3)",
+              border: "2px solid var(--color-border-glow)",
             }}
           />
           <motion.span
             style={{
               fontSize: "4rem",
-              color: "#00f5d4",
-              fontFamily: "'JetBrains Mono', monospace",
+              color: "var(--color-accent)",
+              fontFamily: "var(--font-code)",
             }}
             animate={{ rotate: [0, 10, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity }}

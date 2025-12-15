@@ -1,0 +1,68 @@
+// Theme CSS Variables
+// Dark Theme (default)
+:root[data-theme="dark"] {
+  // Typography
+  --font-code: "JetBrains Mono", "Fira Code", monospace;
+  --font-body: "Space Grotesk", sans-serif;
+
+  // Colors
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #12121a;
+  --color-bg-card: #1a1a24;
+  --color-accent: #00f5d4;
+  --color-accent-dim: rgba(0, 245, 212, 0.1);
+  --color-accent-hover: #00d4b8;
+  --color-accent-glow: rgba(0, 245, 212, 0.4);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0b0;
+  --color-text-muted: #6a6a7a;
+  --color-border: #2a2a3a;
+  --color-border-glow: rgba(0, 245, 212, 0.3);
+  --color-accent-03: rgba(0, 245, 212, 0.03);
+  --color-bg-card-50: rgba(26, 26, 36, 0.5);
+
+  // Shadows
+  --shadow-glow: 0 0 20px rgba(0, 245, 212, 0.4);
+  --shadow-card: 0 4px 30px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 8px 40px rgba(0, 245, 212, 0.2);
+
+  // Gradients
+  --gradient-bg: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%);
+  --gradient-accent: linear-gradient(135deg, #00f5d4 0%, #00b8a9 100%);
+  --gradient-card: linear-gradient(180deg, #1a1a24 0%, #12121a 100%);
+}
+
+// Light Theme - Warm Coral & Cream
+:root[data-theme="light"] {
+  // Typography
+  --font-code: "JetBrains Mono", "Fira Code", monospace;
+  --font-body: "Space Grotesk", sans-serif;
+
+  // Colors - Warm coral accent with cream backgrounds
+  --color-bg-primary: #faf8f5;
+  --color-bg-secondary: #f3efe8;
+  --color-bg-card: #ffffff;
+  --color-accent: #e85d4c;
+  --color-accent-dim: rgba(232, 93, 76, 0.1);
+  --color-accent-hover: #d14d3d;
+  --color-accent-glow: rgba(232, 93, 76, 0.35);
+  --color-text-primary: #2d2a26;
+  --color-text-secondary: #5c5752;
+  --color-text-muted: #9a9590;
+  --color-border: #e8e4dc;
+  --color-border-glow: rgba(232, 93, 76, 0.25);
+  --color-accent-03: rgba(232, 93, 76, 0.04);
+  --color-bg-card-50: rgba(255, 255, 255, 0.7);
+
+  // Shadows
+  --shadow-glow: 0 0 24px rgba(232, 93, 76, 0.35);
+  --shadow-card: 0 4px 24px rgba(45, 42, 38, 0.08);
+  --shadow-hover: 0 12px 40px rgba(232, 93, 76, 0.2);
+
+  // Gradients
+  --gradient-bg: linear-gradient(145deg, #faf8f5 0%, #f3efe8 50%, #ebe6dc 100%);
+  --gradient-accent: linear-gradient(135deg, #e85d4c 0%, #d14d3d 50%, #c44035 100%);
+  --gradient-card: linear-gradient(180deg, #ffffff 0%, #faf8f5 100%);
+}
+
+

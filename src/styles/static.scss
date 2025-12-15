@@ -1,20 +1,22 @@
-// Typography
-$font-code: "JetBrains Mono", "Fira Code", monospace;
-$font-body: "Space Grotesk", sans-serif;
+// Typography - Using CSS variables
+$font-code: var(--font-code);
+$font-body: var(--font-body);
 
-// Dark theme with cyan accents
-$color-bg-primary: #0a0a0f;
-$color-bg-secondary: #12121a;
-$color-bg-card: #1a1a24;
-$color-accent: #00f5d4;
-$color-accent-dim: rgba(0, 245, 212, 0.1);
-$color-accent-hover: #00d4b8;
-$color-accent-glow: rgba(0, 245, 212, 0.4);
-$color-text-primary: #ffffff;
-$color-text-secondary: #a0a0b0;
-$color-text-muted: #6a6a7a;
-$color-border: #2a2a3a;
-$color-border-glow: rgba(0, 245, 212, 0.3);
+// Colors - Using CSS variables
+$color-bg-primary: var(--color-bg-primary);
+$color-bg-secondary: var(--color-bg-secondary);
+$color-bg-card: var(--color-bg-card);
+$color-accent: var(--color-accent);
+$color-accent-dim: var(--color-accent-dim);
+$color-accent-hover: var(--color-accent-hover);
+$color-accent-glow: var(--color-accent-glow);
+$color-text-primary: var(--color-text-primary);
+$color-text-secondary: var(--color-text-secondary);
+$color-text-muted: var(--color-text-muted);
+$color-border: var(--color-border);
+$color-border-glow: var(--color-border-glow);
+$color-accent-03: var(--color-accent-03);
+$color-bg-card-50: var(--color-bg-card-50);
 
 // Legacy color mappings for backwards compatibility during transition
 $text1: $font-code;
@@ -40,12 +42,12 @@ $p_sm: 2vmax;
 $p_sm_inverse: 10vmax 0;
 $p_zero: 0;
 
-// Shadows and effects
-$shadow-glow: 0 0 20px $color-accent-glow;
-$shadow-card: 0 4px 30px rgba(0, 0, 0, 0.5);
-$shadow-hover: 0 8px 40px rgba(0, 245, 212, 0.2);
+// Shadows and effects - Using CSS variables
+$shadow-glow: var(--shadow-glow);
+$shadow-card: var(--shadow-card);
+$shadow-hover: var(--shadow-hover);
 
-// Gradients
-$gradient-bg: linear-gradient(135deg, $color-bg-primary 0%, $color-bg-secondary 100%);
-$gradient-accent: linear-gradient(135deg, $color-accent 0%, #00b8a9 100%);
-$gradient-card: linear-gradient(180deg, $color-bg-card 0%, $color-bg-secondary 100%);
+// Gradients - Using CSS variables
+$gradient-bg: var(--gradient-bg);
+$gradient-accent: var(--gradient-accent);
+$gradient-card: var(--gradient-card);

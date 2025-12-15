@@ -3,6 +3,8 @@ import { motion, useInView } from "framer-motion";
 import TypeWriter from "typewriter-effect";
 import { BsArrowUpRight, BsChevronDown } from "react-icons/bs";
 import Terminal from "./Terminal";
+import ParticleBackground from "./ParticleBackground";
+import ErrorBoundary from "./ErrorBoundary";
 
 const Home = ({ ratio }) => {
   const clientCount = useRef(null);
@@ -83,6 +85,9 @@ const Home = ({ ratio }) => {
 
   return (
     <div id="home" ref={sectionRef}>
+      <ErrorBoundary>
+        <ParticleBackground density="high" color="var(--color-accent)" section="home" />
+      </ErrorBoundary>
       <section>
         <motion.div
           variants={containerVariants}

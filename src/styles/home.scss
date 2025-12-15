@@ -16,8 +16,8 @@
     right: 0;
     bottom: 0;
     background-image: 
-      linear-gradient(rgba($color-accent, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba($color-accent, 0.03) 1px, transparent 1px);
+      linear-gradient($color-accent-03 1px, transparent 1px),
+      linear-gradient(90deg, $color-accent-03 1px, transparent 1px);
     background-size: 50px 50px;
     pointer-events: none;
   }
@@ -137,7 +137,7 @@
           color: $color-text-primary;
           position: relative;
           padding: 1.5rem;
-          background: rgba($color-bg-card, 0.5);
+          background: $color-bg-card-50;
           border: 1px solid $color-border;
           border-radius: 8px;
           transition: all 0.3s ease;
@@ -183,6 +183,18 @@
       justify-content: center;
       align-items: center;
       padding-right: $p;
+      position: relative;
+      z-index: 1;
+
+      > div {
+        position: relative;
+        z-index: 1;
+
+        // Hide 3D canvas on mobile
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
+      }
     }
   }
 }

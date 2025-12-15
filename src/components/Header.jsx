@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { HiDownload } from "react-icons/hi";
+import { BsSun, BsMoon } from "react-icons/bs";
+import { useTheme } from "../context/ThemeContext";
 
 function Header({ menuOpen, setMenuOpen, activeSection }) {
   return (
@@ -30,6 +32,7 @@ function Header({ menuOpen, setMenuOpen, activeSection }) {
 }
 
 export const HeaderPhone = ({ menuOpen, setMenuOpen, activeSection }) => {
+  const { theme, toggleTheme } = useTheme();
   const menuVariants = {
     closed: {
       y: "-100%",
@@ -85,6 +88,33 @@ export const HeaderPhone = ({ menuOpen, setMenuOpen, activeSection }) => {
         </a>
       </motion.div>
       <motion.div variants={itemVariants}>
+        <motion.button
+          variants={itemVariants}
+          onClick={() => {
+            toggleTheme();
+            setMenuOpen(false);
+          }}
+          style={{
+            background: "transparent",
+            border: "1px solid var(--color-accent)",
+            color: "var(--color-accent)",
+            padding: "0.8rem 2rem",
+            borderRadius: "4px",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.5rem",
+            fontSize: "1.2rem",
+            width: "100%",
+            fontFamily: "var(--font-code)",
+            letterSpacing: "2px",
+            fontWeight: 500,
+          }}
+        >
+          {theme === "dark" ? <BsSun /> : <BsMoon />}
+          {theme === "dark" ? "Light" : "Dark"}
+        </motion.button>
         <motion.a 
           variants={itemVariants} 
           href="/SyedTalhaJanResume.pdf"
@@ -105,6 +135,7 @@ export const HeaderPhone = ({ menuOpen, setMenuOpen, activeSection }) => {
 };
 
 const NavContent = ({ setMenuOpen, activeSection }) => {
+  const { theme, toggleTheme } = useTheme();
   const linkVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: (i) => ({
@@ -154,6 +185,30 @@ const NavContent = ({ setMenuOpen, activeSection }) => {
         ))}
       </div>
       <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+        <motion.button
+          onClick={toggleTheme}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          whileHover={{ scale: 1.1, rotate: 15 }}
+          whileTap={{ scale: 0.95 }}
+          style={{
+            background: "transparent",
+            border: "1px solid var(--color-accent)",
+            color: "var(--color-accent)",
+            padding: "0.6rem",
+            borderRadius: "4px",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "1.2rem",
+            transition: "all 0.3s ease",
+          }}
+          aria-label="Toggle theme"
+        >
+          {theme === "dark" ? <BsSun /> : <BsMoon />}
+        </motion.button>
         <motion.a
           href="/SyedTalhaJanResume.pdf"
           download="SyedTalhaJanResume.pdf"
