@@ -57,7 +57,28 @@ nav {
         box-shadow: 0 0 10px $color-accent-glow;
       }
 
-      &:hover {
+      // Active state - must come before hover to ensure proper precedence
+      &.active {
+        color: $color-accent;
+        text-shadow: 0 0 10px $color-accent-glow;
+
+        &::after {
+          width: 100%;
+        }
+
+        // Active state on hover
+        &:hover {
+          color: $color-accent;
+          text-shadow: 0 0 15px $color-accent-glow;
+
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+
+      // Hover state for non-active links
+      &:hover:not(.active) {
         color: $color-accent;
         text-shadow: 0 0 10px $color-accent-glow;
 
@@ -68,6 +89,13 @@ nav {
     }
   }
 
+  > div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  > div > a > button,
   > a > button {
     border: 1px solid $color-accent;
     padding: 0.6rem 1.8rem;
@@ -80,6 +108,9 @@ nav {
     font-size: 0.9rem;
     border-radius: 4px;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 
     &:hover {
       background: $color-accent;

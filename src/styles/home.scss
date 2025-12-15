@@ -159,15 +159,18 @@
             display: block;
             margin-top: 0.5rem;
           }
-        }
 
-        article[data-special] {
-          > p {
-            font-size: 1.2rem;
-          }
-          > span {
-            font-size: 0.85rem;
-            word-break: break-all;
+          > a {
+            font: 400 0.9rem $font-body;
+            color: $color-text-secondary;
+            display: block;
+            margin-top: 0.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+
+            &:hover {
+              color: $color-accent;
+            }
           }
         }
       }

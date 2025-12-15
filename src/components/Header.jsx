@@ -1,8 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { HiDownload } from "react-icons/hi";
 
-function Header({ menuOpen, setMenuOpen }) {
+function Header({ menuOpen, setMenuOpen, activeSection }) {
   return (
     <>
       <motion.nav
@@ -10,7 +11,7 @@ function Header({ menuOpen, setMenuOpen }) {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <NavContent setMenuOpen={setMenuOpen} />
+        <NavContent setMenuOpen={setMenuOpen} activeSection={activeSection} />
       </motion.nav>
 
       <motion.button
@@ -28,7 +29,7 @@ function Header({ menuOpen, setMenuOpen }) {
   );
 }
 
-export const HeaderPhone = ({ menuOpen, setMenuOpen }) => {
+export const HeaderPhone = ({ menuOpen, setMenuOpen, activeSection }) => {
   const menuVariants = {
     closed: {
       y: "-100%",
@@ -90,7 +91,7 @@ export const HeaderPhone = ({ menuOpen, setMenuOpen }) => {
   );
 };
 
-const NavContent = ({ setMenuOpen }) => {
+const NavContent = ({ setMenuOpen, activeSection }) => {
   const linkVariants = {
     hidden: { opacity: 0, y: -10 },
     visible: (i) => ({
@@ -104,12 +105,12 @@ const NavContent = ({ setMenuOpen }) => {
   };
 
   const links = [
-    { href: "#home", text: "Home" },
-    { href: "#work", text: "Work" },
-    { href: "#experience", text: "Experience" },
-    { href: "#services", text: "Services" },
-    { href: "#testimonial", text: "Testimonial" },
-    { href: "#contact", text: "Contact" },
+    { href: "#home", text: "Home", id: "home" },
+    { href: "#work", text: "Work", id: "work" },
+    { href: "#experience", text: "Experience", id: "experience" },
+    { href: "#services", text: "Services", id: "services" },
+    { href: "#testimonial", text: "Testimonial", id: "testimonial" },
+    { href: "#contact", text: "Contact", id: "contact" },
   ];
 
   return (
@@ -133,21 +134,41 @@ const NavContent = ({ setMenuOpen }) => {
             initial="hidden"
             animate="visible"
             whileHover={{ y: -2 }}
+            className={activeSection === link.id ? "active" : ""}
           >
             {link.text}
           </motion.a>
         ))}
       </div>
-      <motion.a
-        href="mailto:syedtalha497@gmail.com"
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
-      >
-        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          Email
-        </motion.button>
-      </motion.a>
+      <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+        <motion.a
+          href="/SyedTalhaJanResume.pdf"
+          download="SyedTalhaJanResume.pdf"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+        >
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+          >
+            <HiDownload />
+            CV
+          </motion.button>
+        </motion.a>
+        <motion.a
+          href="mailto:syedtalha497@gmail.com"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+        >
+          <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            Email
+          </motion.button>
+        </motion.a>
+      </div>
     </>
   );
 };
