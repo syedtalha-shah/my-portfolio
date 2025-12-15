@@ -6,6 +6,7 @@ import {
   AiFillLinkedin,
   AiOutlineArrowUp,
 } from "react-icons/ai";
+import { HiDownload } from "react-icons/hi";
 
 const Footer = () => {
   const socialLinks = [
@@ -103,6 +104,43 @@ const Footer = () => {
             </motion.a>
           ))}
         </article>
+
+        <motion.a
+          href="/SyedTalhaJanResume.pdf"
+          download="SyedTalhaJanResume.pdf"
+          variants={itemVariants}
+          whileHover={{ scale: 1.05, y: -3 }}
+          whileTap={{ scale: 0.95 }}
+          style={{
+            marginTop: "1.5rem",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            padding: "0.8rem 1.5rem",
+            border: "1px solid var(--color-accent, #00f5d4)",
+            borderRadius: "4px",
+            color: "var(--color-accent, #00f5d4)",
+            fontFamily: "var(--font-code, 'JetBrains Mono', monospace)",
+            fontSize: "0.9rem",
+            fontWeight: 500,
+            letterSpacing: "1px",
+            textDecoration: "none",
+            transition: "all 0.3s ease",
+          }}
+          onHoverStart={(e) => {
+            e.currentTarget.style.background = "var(--color-accent, #00f5d4)";
+            e.currentTarget.style.color = "var(--color-bg-primary, #0a0a0f)";
+            e.currentTarget.style.boxShadow = "0 0 20px rgba(0, 245, 212, 0.4)";
+          }}
+          onHoverEnd={(e) => {
+            e.currentTarget.style.background = "transparent";
+            e.currentTarget.style.color = "var(--color-accent, #00f5d4)";
+            e.currentTarget.style.boxShadow = "none";
+          }}
+        >
+          <HiDownload />
+          Download CV
+        </motion.a>
       </motion.aside>
 
       <motion.a

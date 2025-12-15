@@ -143,14 +143,17 @@ const Home = ({ ratio }) => {
             </motion.article>
 
             <motion.article
-              data-special
               variants={statsVariants}
               whileHover={{ scale: 1.05 }}
             >
               <p>
                 Contact
               </p>
-              <span>syedtalha497@gmail.com</span>
+              <a 
+                href="mailto:syedtalha497@gmail.com"
+              >
+                syedtalha497@gmail.com
+              </a>
             </motion.article>
           </motion.aside>
         </motion.div>

@@ -6,6 +6,7 @@ import Services from "./components/Services";
 import Testimonial from "./components/Testimonial";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import WhatsAppButton from "./components/WhatsAppButton";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     // Simulate initial loading
@@ -31,6 +33,82 @@ function App() {
       document.body.style.overflow = "unset";
     }
   }, [menuOpen]);
+
+  // Scroll spy for navigation highlighting
+  useEffect(() => {
+    if (isLoading) return; // Wait for page to load
+
+    const sections = ["home", "work", "experience", "services", "testimonial", "contact"];
+    
+    const updateActiveSection = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const offset = 200; // Offset for better detection
+
+      // Check if we're at the very top
+      if (scrollY < 100) {
+        setActiveSection("home");
+        return;
+      }
+
+      // Find the section currently in view
+      let currentSection = "home";
+      
+      for (let i = 0; i < sections.length; i++) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          const sectionTop = rect.top + scrollY;
+          const sectionBottom = sectionTop + rect.height;
+          
+          // Check if section is in the viewport with offset
+          if (scrollY + offset >= sectionTop && scrollY < sectionBottom) {
+            currentSection = sections[i];
+            break;
+          }
+        }
+      }
+
+      setActiveSection(currentSection);
+    };
+
+    // Use Intersection Observer for accurate detection
+    const observerOptions = {
+      root: null,
+      rootMargin: "-150px 0px -60% 0px",
+      threshold: 0.1,
+    };
+
+    const sectionObservers = new Map();
+
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(sectionId);
+            }
+          });
+        }, observerOptions);
+
+        observer.observe(element);
+        sectionObservers.set(sectionId, observer);
+      }
+    });
+
+    // Initial check
+    const timeoutId = setTimeout(updateActiveSection, 200);
+    
+    // Listen to scroll events as backup
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener("scroll", updateActiveSection);
+      sectionObservers.forEach((observer) => observer.disconnect());
+    };
+  }, [isLoading]);
 
   if (isLoading) {
     return (
@@ -76,8 +154,8 @@ function App() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <HeaderPhone menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <HeaderPhone menuOpen={menuOpen} setMenuOpen={setMenuOpen} activeSection={activeSection} />
+        <Header menuOpen={menuOpen} setMenuOpen={setMenuOpen} activeSection={activeSection} />
         <Home />
         <Work />
         <Timeline />
@@ -85,6 +163,7 @@ function App() {
         <Testimonial />
         <Contact />
         <Footer />
+        <WhatsAppButton />
         <Toaster
           position="bottom-right"
           toastOptions={{
