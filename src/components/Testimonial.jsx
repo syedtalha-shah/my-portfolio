@@ -10,10 +10,10 @@ const Testimonial = () => {
       image: "/abdal.png",
     },
     {
-      name: "Hamza Sohail",
+      name: "Hamza",
       role: "Co-Founder (MetaKlouds)",
       feedback: `His expertise and problem-solving skills have greatly benefited our team. He approaches every challenge with creativity and dedication. A valuable asset!`,
-      image: "/hamza.png",
+      image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2300f5d4'/%3E%3Ccircle cx='50' cy='35' r='12' fill='%230a0a0f'/%3E%3Cpath d='M 30 75 Q 30 60 50 60 Q 70 60 70 75 L 70 85 L 30 85 Z' fill='%230a0a0f'/%3E%3C/svg%3E",
     },
     {
       name: "Muhammad Kashif",
@@ -77,32 +77,32 @@ const Testimonial = () => {
 };
 
 const TestimonialCard = ({ name, role, feedback, image, variants }) => (
-  <motion.article
+  <motion.div
     variants={variants}
-    whileHover={{ 
-      y: -10,
-      transition: { duration: 0.3 }
-    }}
+    style={{ width: "100%" }}
   >
-    <motion.img
-      src={image}
-      alt={name}
-      initial={{ scale: 0 }}
-      whileInView={{ scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ type: "spring", stiffness: 200, damping: 15 }}
-    />
-    <h4>{name}</h4>
-    <span style={{ 
-      fontSize: "0.8rem", 
-      color: "var(--color-text-muted, #6a6a7a)",
-      display: "block",
-      marginBottom: "0.5rem"
-    }}>
-      {role}
-    </span>
-    <p>{feedback}</p>
-  </motion.article>
+    <article className="testimonial-card">
+      <motion.img
+        src={image}
+        alt={name}
+        className="testimonial-image"
+        initial={{ scale: 0 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ type: "spring", stiffness: 200, damping: 15 }}
+      />
+      <h4>{name}</h4>
+      <span style={{ 
+        fontSize: "0.8rem", 
+        color: "var(--color-text-muted, #6a6a7a)",
+        display: "block",
+        marginBottom: "0.5rem"
+      }}>
+        {role}
+      </span>
+      <p>{feedback}</p>
+    </article>
+  </motion.div>
 );
 
 export default Testimonial;

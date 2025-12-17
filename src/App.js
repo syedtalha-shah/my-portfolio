@@ -44,7 +44,10 @@ function App() {
     
     const updateActiveSection = () => {
       const scrollY = window.scrollY;
-      const offset = 200; // Offset for better detection
+      const viewportHeight = window.innerHeight;
+      const viewportTop = scrollY;
+      const viewportBottom = scrollY + viewportHeight;
+      const viewportCenter = scrollY + viewportHeight / 2;
 
       // Check if we're at the very top
       if (scrollY < 100) {
@@ -52,20 +55,37 @@ function App() {
         return;
       }
 
-      // Find the section currently in view
+      // Find the section that contains the viewport center or is most visible
       let currentSection = "home";
-      
-      for (let i = 0; i < sections.length; i++) {
+      let bestScore = -1;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
         const section = document.getElementById(sections[i]);
         if (section) {
           const rect = section.getBoundingClientRect();
           const sectionTop = rect.top + scrollY;
           const sectionBottom = sectionTop + rect.height;
           
-          // Check if section is in the viewport with offset
-          if (scrollY + offset >= sectionTop && scrollY < sectionBottom) {
+          // Check if viewport center is within this section (highest priority)
+          if (viewportCenter >= sectionTop && viewportCenter <= sectionBottom) {
             currentSection = sections[i];
             break;
+          }
+          
+          // Calculate visibility score
+          const visibleTop = Math.max(rect.top, 0);
+          const visibleBottom = Math.min(rect.bottom, viewportHeight);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          
+          // Score based on how much is visible and how close to viewport center
+          if (visibleHeight > 0) {
+            const distanceFromCenter = Math.abs((sectionTop + sectionBottom) / 2 - viewportCenter);
+            const score = visibleHeight / rect.height - (distanceFromCenter / viewportHeight) * 0.5;
+            
+            if (score > bestScore) {
+              bestScore = score;
+              currentSection = sections[i];
+            }
           }
         }
       }
@@ -73,41 +93,87 @@ function App() {
       setActiveSection(currentSection);
     };
 
-    // Use Intersection Observer for accurate detection
+    // Use Intersection Observer with better configuration
     const observerOptions = {
       root: null,
-      rootMargin: "-150px 0px -60% 0px",
-      threshold: 0.1,
+      rootMargin: "-30% 0px -30% 0px", // Only trigger when section is in middle 40% of viewport
+      threshold: [0, 0.25, 0.5, 0.75, 1],
     };
 
-    const sectionObservers = new Map();
+    // Track all sections and their intersection states
+    const sectionStates = new Map();
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const sectionId = entry.target.id;
+        if (sectionId) {
+          sectionStates.set(sectionId, {
+            isIntersecting: entry.isIntersecting,
+            intersectionRatio: entry.intersectionRatio,
+            boundingClientRect: entry.boundingClientRect,
+          });
+        }
+      });
 
+      // Find the section with the best intersection (highest ratio and intersecting)
+      let bestSection = "home";
+      let bestRatio = 0;
+
+      sectionStates.forEach((state, id) => {
+        if (state.isIntersecting && state.intersectionRatio > bestRatio) {
+          bestRatio = state.intersectionRatio;
+          bestSection = id;
+        }
+      });
+
+      // Only update if we have a good intersection
+      if (bestRatio > 0.2) {
+        setActiveSection(bestSection);
+      }
+    }, observerOptions);
+
+    // Observe all sections
     sections.forEach((sectionId) => {
       const element = document.getElementById(sectionId);
       if (element) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(sectionId);
-            }
-          });
-        }, observerOptions);
-
         observer.observe(element);
-        sectionObservers.set(sectionId, observer);
       }
     });
 
     // Initial check
-    const timeoutId = setTimeout(updateActiveSection, 200);
+    const timeoutId = setTimeout(updateActiveSection, 300);
     
-    // Listen to scroll events as backup
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    // Listen to scroll events with throttling
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Handle hash changes (when clicking nav links)
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash && sections.includes(hash)) {
+        setActiveSection(hash);
+        // Also trigger scroll update after a short delay to ensure correct state
+        setTimeout(updateActiveSection, 100);
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
 
     return () => {
       clearTimeout(timeoutId);
-      window.removeEventListener("scroll", updateActiveSection);
-      sectionObservers.forEach((observer) => observer.disconnect());
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("hashchange", handleHashChange);
+      observer.disconnect();
     };
   }, [isLoading]);
 

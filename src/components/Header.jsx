@@ -68,22 +68,22 @@ export const HeaderPhone = ({ menuOpen, setMenuOpen, activeSection }) => {
     >
       <motion.h2 variants={itemVariants}>STJ.</motion.h2>
       <motion.div variants={itemVariants}>
-        <a onClick={() => setMenuOpen(false)} href="#home">
+        <a onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.location.hash = "#home"; }} href="#home">
           Home
         </a>
-        <a onClick={() => setMenuOpen(false)} href="#work">
+        <a onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.location.hash = "#work"; }} href="#work">
           Work
         </a>
-        <a onClick={() => setMenuOpen(false)} href="#experience">
+        <a onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.location.hash = "#experience"; }} href="#experience">
           Experience
         </a>
-        <a onClick={() => setMenuOpen(false)} href="#services">
+        <a onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.location.hash = "#services"; }} href="#services">
           Services
         </a>
-        <a onClick={() => setMenuOpen(false)} href="#testimonial">
+        <a onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.location.hash = "#testimonial"; }} href="#testimonial">
           Testimonial
         </a>
-        <a onClick={() => setMenuOpen(false)} href="#contact">
+        <a onClick={(e) => { e.preventDefault(); setMenuOpen(false); window.location.hash = "#contact"; }} href="#contact">
           Contact
         </a>
       </motion.div>
@@ -157,6 +157,12 @@ const NavContent = ({ setMenuOpen, activeSection }) => {
     { href: "#contact", text: "Contact", id: "contact" },
   ];
 
+  const handleLinkClick = (e, linkId) => {
+    setMenuOpen(false);
+    // Update URL hash - hashchange event will update activeSection
+    window.location.hash = `#${linkId}`;
+  };
+
   return (
     <>
       <motion.h2
@@ -172,7 +178,7 @@ const NavContent = ({ setMenuOpen, activeSection }) => {
           <motion.a
             key={link.href}
             href={link.href}
-            onClick={() => setMenuOpen(false)}
+            onClick={(e) => handleLinkClick(e, link.id)}
             custom={i}
             variants={linkVariants}
             initial="hidden"

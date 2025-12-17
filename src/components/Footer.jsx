@@ -99,6 +99,7 @@ const Footer = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
+              style={{ position: 'relative', zIndex: 1000, pointerEvents: 'auto' }}
             >
               {link.icon}
             </motion.a>
@@ -126,16 +127,23 @@ const Footer = () => {
             letterSpacing: "1px",
             textDecoration: "none",
             transition: "all 0.3s ease",
+            position: 'relative',
+            zIndex: 1000,
+            pointerEvents: 'auto',
           }}
           onHoverStart={(e) => {
-            e.currentTarget.style.background = "var(--color-accent, #00f5d4)";
-            e.currentTarget.style.color = "var(--color-bg-primary, #0a0a0f)";
-            e.currentTarget.style.boxShadow = "0 0 20px rgba(0, 245, 212, 0.4)";
+            if (e?.currentTarget) {
+              e.currentTarget.style.background = "var(--color-accent, #00f5d4)";
+              e.currentTarget.style.color = "var(--color-bg-primary, #0a0a0f)";
+              e.currentTarget.style.boxShadow = "0 0 20px rgba(0, 245, 212, 0.4)";
+            }
           }}
           onHoverEnd={(e) => {
-            e.currentTarget.style.background = "transparent";
-            e.currentTarget.style.color = "var(--color-accent, #00f5d4)";
-            e.currentTarget.style.boxShadow = "none";
+            if (e?.currentTarget) {
+              e.currentTarget.style.background = "transparent";
+              e.currentTarget.style.color = "var(--color-accent, #00f5d4)";
+              e.currentTarget.style.boxShadow = "none";
+            }
           }}
         >
           <HiDownload />
@@ -145,10 +153,15 @@ const Footer = () => {
 
       <motion.a
         href="#home"
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
         variants={itemVariants}
         whileHover={{ scale: 1.1, y: -5 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Scroll to top"
+        style={{ position: 'relative', zIndex: 1000, pointerEvents: 'auto' }}
       >
         <AiOutlineArrowUp />
       </motion.a>

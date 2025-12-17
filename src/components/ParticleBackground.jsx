@@ -168,6 +168,7 @@ const ParticleBackground = ({ density = "medium", color = "#00f5d4", section = "
           style={{
             width: "100%",
             height: "100%",
+            pointerEvents: "none",
           }}
         />
       </div>

@@ -8,6 +8,8 @@ footer {
   grid-template-columns: 2fr 1fr 1fr;
   align-items: center;
   gap: 2rem;
+  position: relative;
+  z-index: 100;
 
   > div {
     text-align: center;
@@ -69,6 +71,9 @@ footer {
         align-items: center;
         justify-content: center;
         transition: all 0.3s ease;
+        position: relative;
+        z-index: 1000;
+        pointer-events: auto;
 
         &:hover {
           border-color: $color-accent;
@@ -86,6 +91,12 @@ footer {
         }
       }
     }
+
+    > a {
+      position: relative;
+      z-index: 1000;
+      pointer-events: auto;
+    }
   }
 
   > a {
@@ -98,6 +109,9 @@ footer {
     place-items: center;
     justify-self: center;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 1000;
+    pointer-events: auto;
 
     &:hover {
       background: $color-accent;
