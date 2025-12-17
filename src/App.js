@@ -7,6 +7,7 @@ import Testimonial from "./components/Testimonial";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import Jarvis from "./components/Jarvis";
 import FloatingSkillIcons from "./components/FloatingSkillIcons";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
@@ -233,6 +234,7 @@ function App() {
           <Contact />
           <Footer />
           <WhatsAppButton />
+          <Jarvis />
           <Toaster
             position="bottom-right"
             toastOptions={{
