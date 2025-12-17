@@ -58,3 +58,5 @@ const SkillsChart = () => {
 
 export default SkillsChart;
 
+
+

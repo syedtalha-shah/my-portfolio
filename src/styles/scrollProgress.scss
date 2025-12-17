@@ -1,0 +1,108 @@
+.scroll-progress-container {
+  position: fixed;
+  // Adjust position to center-align with 60px WhatsApp button
+  // Button is at bottom: 2rem, right: 2rem with 60px size
+  // Container is 80px, so we need to offset by (80-60)/2 = 10px
+  bottom: calc(2rem - 10px);
+  right: calc(2rem - 10px);
+  z-index: 149;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+  transform: none;
+
+  @media (max-width: 786px) {
+    // Button is 55px, container is 75px, offset = (75-55)/2 = 10px
+    bottom: calc(1.5rem - 10px);
+    right: calc(1.5rem - 10px);
+    width: 75px;
+    height: 75px;
+  }
+
+  @media (max-width: 480px) {
+    // Button is 55px, container is 70px, offset = (70-55)/2 = 7.5px
+    bottom: calc(1rem - 7.5px);
+    right: calc(1rem - 7.5px);
+    width: 70px;
+    height: 70px;
+  }
+}
+
+.scroll-progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px var(--color-accent-glow));
+  overflow: visible;
+  // Ensure perfect centering - no transforms that could cause misalignment
+  margin: 0;
+  padding: 0;
+  // Center the viewBox content
+  display: block;
+}
+
+.scroll-progress-ring-bg {
+  stroke: var(--color-border);
+  stroke-width: 5;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+
+  @media (max-width: 786px) {
+    stroke-width: 4.5;
+  }
+
+  @media (max-width: 480px) {
+    stroke-width: 4;
+  }
+}
+
+.scroll-progress-ring-fill {
+  stroke: url(#progressGradient);
+  stroke-width: 5;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px var(--color-accent-glow));
+  transition: stroke-dashoffset 0.1s linear;
+
+  @media (max-width: 786px) {
+    stroke-width: 4.5;
+  }
+
+  @media (max-width: 480px) {
+    stroke-width: 4;
+  }
+}
+
+.scroll-progress-percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-shadow: 
+    0 0 8px var(--color-accent-glow),
+    0 0 16px var(--color-accent-glow);
+  letter-spacing: 0.5px;
+  pointer-events: none;
+  z-index: 2;
+  transition: all 0.3s ease;
+
+  @media (max-width: 786px) {
+    font-size: 0.65rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+  }
+}
